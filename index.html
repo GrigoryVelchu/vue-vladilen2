@@ -6,12 +6,27 @@
     <link rel = "stylesheet" href="theme.css">
 </head>
 <body>
-
-    <div class="container" id = "app">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    //Директива cloak висит на элементе до того как прогрузится приложение vue, убирает дергание при перерисовке
+    <div class="container" id = "app" v-cloak>
         <div class="card">
-
+        <div v-html = "myHtml">
 
         </div>
+            <h2 v-text = "title"></h2>
+            //Директива once отрисовывает элемент единожды после изменения состояния не перерисовывается
+            <h2 v-once>{{title}}</h2>
+            // pre - не интерполирует
+            <h2 v-pre>{{title}}</h2>
+        </div>
+        <hr>
+        <button
+        class = "btn primary"
+        @click = "title = 'Меня уже не зовут Семен'">Изменить Имя</button>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script src = "app.js"></script>
